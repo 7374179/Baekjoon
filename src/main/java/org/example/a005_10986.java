@@ -2,14 +2,16 @@ package org.example;
 
 import java.util.Scanner;
 
-public class a003 {
+public class a005_10986 {
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
     int N = sc.nextInt();
     int M = sc.nextInt();
+    int count = 0;
 
     int[] arr = new int[N];
     int[] sum = new int[N];
+
     for(int i=0;i<N;i++){
       arr[i]=sc.nextInt();
       if(i==0){
@@ -19,15 +21,13 @@ public class a003 {
       }
     }
 
-    for(int k=0;k<M;k++){
-      int i = sc.nextInt();
-      int j = sc.nextInt();
-
-      if(i==1){
-        System.out.println(sum[j-1]);
-      }else{
-        System.out.println(sum[j-1]-sum[i-2]);
+    for(int i=0;i<N;i++){
+      for(int j=i;j<N;j++){
+        if(sum[j]%M==0){
+          count++;
+        }
       }
     }
+    System.out.println(count);
   }
 }

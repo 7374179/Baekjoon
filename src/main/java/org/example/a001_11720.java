@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class a001 {
+public class a001_11720 {
   public static void main(String[] args){
     Scanner scan = new Scanner(System.in);
     int N = scan.nextInt();
