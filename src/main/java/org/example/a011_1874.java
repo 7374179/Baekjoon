@@ -18,7 +18,6 @@ public class a011_1874 {
     int i = 0;
     int j = 1;
 
-    // 이부분 때문에 Time complexity는 n^2이 된다. 나중에 줄여보자!!
     while(i<n){
       while(i<n){
         if(arr[i]>=j){
