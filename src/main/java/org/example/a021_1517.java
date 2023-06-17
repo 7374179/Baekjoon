@@ -17,12 +17,13 @@ public class a021_1517 {
       A[i] = Integer.parseInt(st.nextToken());
     }
 
-    int k=0;
+    int left = 0;
+    int right = N-1;
+    int last = right;
 
-    while(k<N-1){
-      int last = N-1;
-      for(int j=N-1;j>k;j--) {
-        if (A[j - 1] > A[j]) {
+    while(left<right){
+      for(int j=right;j>left;j--){
+        if(A[j-1]>A[j]){
           int tmp = A[j - 1];
           A[j - 1] = A[j];
           A[j] = tmp;
@@ -30,9 +31,33 @@ public class a021_1517 {
           last = j;
         }
       }
-        k = last;
-
+      left = last;
+      for(int j=left;j<right;j++){
+        if(A[j]>A[j+1]){
+          int tmp = A[j - 1];
+          A[j - 1] = A[j];
+          A[j] = tmp;
+          count++;
+          last = j;
+        }
+      }
+      right = last;
     }
+
+//    while(k<N-1){
+//      int last = N-1;
+//      for(int j=N-1;j>k;j--) {
+//        if (A[j - 1] > A[j]) {
+//          int tmp = A[j - 1];
+//          A[j - 1] = A[j];
+//          A[j] = tmp;
+//          count++;
+//          last = j;
+//        }
+//      }
+//        k = last;
+//
+//    }
 
 //    for(int i=0;i<N-1;i++){
 //      for(int j=N-1;j>0;j--){
