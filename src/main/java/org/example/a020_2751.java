@@ -21,6 +21,9 @@ public class a020_2751 {
     int[] B = Arrays.copyOf(arr, mid);
     int[] C = Arrays.copyOfRange(arr, mid+1, arr.length);
 
+    Arrays.sort(B);
+    Arrays.sort(C);
+
     ms(B, C, arr);
 
     for(int a:arr){
