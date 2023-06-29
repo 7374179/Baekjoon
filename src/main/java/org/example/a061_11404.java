@@ -41,7 +41,7 @@ public class a061_11404 {
     for(int i=1;i<=n;i++){
       for(int j=1;j<=n;j++){
         if(arr[i][j]==1000000){
-          System.out.print(-1 +" ");
+          System.out.print("-1 ");
         }else{
           System.out.print(arr[i][j]+" ");
         }
