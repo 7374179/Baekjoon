@@ -13,7 +13,7 @@ public class a074_11437 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        parent = new int[2][N+1];
+        parent = new int[N+1];
         depth = new int[N+1];
         visited = new boolean[N+1];
 
