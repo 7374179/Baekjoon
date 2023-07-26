@@ -39,6 +39,7 @@ public class a047_1325 {
             if(answer[i]==maxVal)
                 System.out.print(i + " ");
         }
+        System.out.println();
     }
     public static void BFS(int index){
         Queue<Integer> queue = new LinkedList<>();
