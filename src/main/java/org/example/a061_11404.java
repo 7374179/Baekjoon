@@ -16,7 +16,7 @@ public class a061_11404 {
           arr[i][j]=0;
         }else{
 //          arr[i][j]=Integer.MAX_VALUE;
-          arr[i][j]=1000000;
+          arr[i][j]=10000001;
         }
       }
     }
@@ -33,15 +33,18 @@ public class a061_11404 {
     for(int k=1;k<=n;k++){
       for(int i=1;i<=n;i++){
         for(int j=1;j<=n;j++){
-          arr[i][j]=Math.min(arr[i][j], arr[i][k]+arr[k][j]);
+          if(arr[i][j]>arr[i][k]+arr[k][j]){
+            arr[i][j]=arr[i][k]+arr[k][j];
+          }
+//          arr[i][j]=Math.min(arr[i][j], arr[i][k]+arr[k][j]);
         }
       }
     }
 
     for(int i=1;i<=n;i++){
       for(int j=1;j<=n;j++){
-        if(arr[i][j]==1000000){
-          System.out.print("-1 ");
+        if(arr[i][j]==10000001){
+          System.out.print("0 ");
         }else{
           System.out.print(arr[i][j]+" ");
         }
