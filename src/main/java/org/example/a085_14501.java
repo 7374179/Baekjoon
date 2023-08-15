@@ -3,18 +3,23 @@ package org.example;
 import java.util.Scanner;
 
 public class a085_14501 {
-    static int N;
-    static int D[][];
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        D = new int[N+1][N+1];
-
+        int N = sc.nextInt();
+        int[] D = new int[N+2];
+        int[] T = new int[N+1];
+        int[] P = new int[N+1];
         for(int i=1;i<=N;i++){
-            int t = sc.nextInt();
-            int p = sc.nextInt();
-            D[0][i]=t;
-            D[1][i]=p;
+            T[i] = sc.nextInt();
+            P[i] = sc.nextInt();
         }
+        for(int i=N;i>0;i--){
+            if(i+T[i] > N+1){
+                D[i] = D[i+1];
+            }else{
+                D[i] = Math.max(D[i+1], P[i]+D[i+T[i]]);
+            }
+        }
+        System.out.println(D[1]);
     }
 }
