@@ -1,29 +1,61 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class a096_14003 {
-    public static void main(String[] args){
-        List<Integer> list = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[] arr = new int[N];
-
-        for(int i=0;i<N;i++){
-            arr[i]=sc.nextInt();
+    static int N, maxLength;
+    static int B[] = new int[1000001];
+    static int A[] = new int[1000001];
+    static int D[] = new int[1000001];
+    static int ans[] = new int[1000001];
+    public static void main(String[] args)  throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 1; i <= N; i++) {
+            A[i] = Integer.parseInt(st.nextToken());
         }
-
-        Arrays.sort(arr);
-
-        for(int i=1;i<N;i++){
-            if(arr[i-1]==arr[i]){
-
+        int index;
+        B[++maxLength] = A[1];
+        D[1] = 1;
+        for (int i = 2; i <= N; i++) {
+            if (B[maxLength] < A[i]) {
+                B[++maxLength] = A[i];
+                D[i] = maxLength;
+            } else {
+                index = binarysearch(1, maxLength, A[i]);
+                B[index] = A[i];
+                D[i] = index;
             }
         }
+        System.out.println(maxLength);
+        index = maxLength;
+        int x = B[maxLength] + 1;
+        for (int i = N; i >= 1; i--) {
+            if (D[i] == index && A[i] < x) {
+                ans[index] = A[i];
+                x = A[i];
+                index--;
+            }
+        }
+        for (int i = 1; i <= maxLength; i++) {
+            System.out.print(ans[i] + " ");
+        }
+    }
 
+    static int binarysearch(int l, int r, int now){
+        int mid;
+        while(l<r){
+            mid=(l+r)/2;
+            if(B[mid]<now)
+                l = mid+1;
+            else
+                r = mid;
+        }
+        return l;
     }
 }
