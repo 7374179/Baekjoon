@@ -1,33 +1,31 @@
 package org.example;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class a005_10986 {
-  public static void main(String[] args){
+  public static void main(String[] args) throws IOException {
     Scanner sc = new Scanner(System.in);
     int N = sc.nextInt();
     int M = sc.nextInt();
-    int count = 0;
-
-    int[] arr = new int[N];
-    int[] sum = new int[N];
-
+    long[] S = new long[N];
+    long[] C = new long[M];
+    long answer = 0;
+    S[0] = sc.nextInt();
+    for(int i=1;i<N;i++){
+      S[i] = S[i-1] + sc.nextInt();
+    }
     for(int i=0;i<N;i++){
-      arr[i]=sc.nextInt();
-      if(i==0){
-        sum[i]=arr[i];
-      }else{
-        sum[i]=sum[i-1]+arr[i];
+      int remainder = (int) (S[i]%M);
+      if(remainder == 0) answer++;
+      C[remainder]++;
+    }
+    for(int i=0;i<M;i++){
+      if(C[i]>1){
+        answer = answer + (C[i] * (C[i]-1)/2);
       }
     }
+    System.out.println(answer);
 
-    for(int i=0;i<N;i++){
-      for(int j=i;j<N;j++){
-        if(sum[j]%M==0){
-          count++;
-        }
-      }
-    }
-    System.out.println(count);
   }
 }
