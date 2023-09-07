@@ -1,60 +1,37 @@
 package org.example;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class a012_17298 {
-  public static void main(String[] args){
-    Stack<Integer> stack1 = new Stack<Integer>();
-    Stack<Integer> stack2 = new Stack<Integer>();
-    List<Integer> list = new ArrayList<Integer>();
-    Scanner sc = new Scanner(System.in);
-    int N =sc.nextInt();
-    int[] arr = new int[N];
-
-    for(int i=0;i<N;i++){
-      arr[i]=sc.nextInt();
+  public static void main(String[] args) throws IOException {
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(bf.readLine());
+    int[] A = new int[n];
+    int[] ans = new int[n];
+    String[] str = bf.readLine().split(" ");
+    for(int i=0;i<n;i++){
+      A[i] = Integer.parseInt(str[i]);
     }
-    stack1.add(arr[0]);
-    stack2.add(arr[0]);
-    stack2.add(arr[1]);
-
-    int i = 1;
-    int j = 2;
-    int p = 1;
-    while(i<N){
-      if(stack1.peek()<stack2.peek()&&j<N){
-        list.add(stack2.peek());
-        if(i==N-1){
-          break;
-        }else{
-          stack1.add(arr[i+1]);
-          stack2.add(arr[j]);
-        }
-      }else{
-        stack2.add(arr[j++]);
+    Stack<Integer> myStack = new Stack<>();
+    myStack.push(0);
+    for(int i=1;i<n;i++){
+      while(!myStack.isEmpty() && A[myStack.peek()] < A[i]){
+        ans[myStack.pop()] = A[i];
       }
-//      i++;
-
-      if(i==N){
-        i=p;
-        list.add(-1);
-        stack2.clear();
-        stack1.add(arr[i]);
-        stack2.addAll(stack1);
-        i++;
-        stack2.add(arr[i]);
-        p++;
-        j++;
-      }
+      myStack.push(i);
     }
-
-    for(int k:list){
-      System.out.print(k + " ");
+    while(!myStack.empty()){
+      ans[myStack.pop()] = -1;
     }
-
-
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    for(int i=0;i<n;i++){
+      bw.write(ans[i] + " ");
+    }
+    bw.write("\n");
+    bw.flush();
   }
 }
