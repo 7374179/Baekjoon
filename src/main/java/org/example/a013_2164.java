@@ -30,5 +30,7 @@ public class a013_2164 {
     }
 
     System.out.println(que1.peek());
+
+
   }
 }
