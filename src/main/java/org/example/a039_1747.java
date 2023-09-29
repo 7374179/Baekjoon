@@ -6,42 +6,42 @@ public class a039_1747 {
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
     int N = sc.nextInt();
-    int ptr=0;
-    int[] arr = new int[100000];
-
-    arr[ptr++]=2;
-    arr[ptr++]=3;
-
-    for(int i=5;i<=1000000;i+=2){
-      boolean flag = false;
-      for(int n=0;arr[n]*arr[n]<=i;n++) {
-        if (i % arr[n] == 0) {
-          flag = true;
+    int[] arr = new int[1000001];
+    for(int i=2;i<1000001;i++){
+      arr[i]=i;
+    }
+    for(int i=2;i<Math.sqrt(1000001);i++){
+      if(arr[i]==0){
+        continue;
+      }
+      for(int j=i*i;j<1000001;j=j+i){
+        arr[j]=0;
+      }
+    }
+    int i = N;
+    while(true){
+      if(arr[i]!=0){
+        int result = arr[i];
+        if(isPalindrome(result)){
+          System.out.println(result);
           break;
         }
       }
-        if(!flag){
-          arr[ptr++]=i;
-        }
-
+      i++;
     }
-    int sum=0;
-    int min=0;
-
-    for(int i=0;i<arr.length;i++){
-      int tmp = arr[i];
-      int co=tmp;
-
-      while(tmp>0){
-        sum = sum*10+tmp%10;
-        tmp=tmp/10;
-      }
-      if(sum==co && sum>=N){
-        min=sum;
-        break;
-      }
-      sum=0;
-    }
-    System.out.println(min);
   }
+  private static boolean isPalindrome(int target){
+    char temp[] = String.valueOf(target).toCharArray();
+    int s = 0;
+    int e = temp.length - 1;
+    while(s<e){
+      if(temp[s]!=temp[e]) {
+        return false;
+      }
+        s++;
+        e--;
+      }
+    return true;
+  }
+
 }
