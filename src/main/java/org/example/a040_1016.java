@@ -5,17 +5,26 @@ import java.util.Scanner;
 public class a040_1016 {
   public static void main(String[] args){
     Scanner sc = new Scanner(System.in);
-    long min = sc.nextLong();
-    long max = sc.nextLong();
-    int count=0;
-
-    for(long i=min;i<=max;i++){
-      if(i*i<=max){
-        count++;
-      }else{
-        break;
+    int min = sc.nextInt();
+    int max = sc.nextInt();
+    int[] arr = new int[1000001];
+    for(int i=1;i<1000001;i++){
+      arr[i]=i;
+    }
+    for(int i=2;i<1000001;i++){
+      if(arr[i]==0){
+        continue;
+      }
+      for(int j=i*i;j<1000001;j=j*i){
+        arr[i]=0;
       }
     }
-    System.out.println(max-min-count+1);
+    int count=0;
+    for(int i=min;i<max;i++){
+      if(arr[i]!=0){
+        count++;
+      }
+    }
+    System.out.println(count);
   }
 }
