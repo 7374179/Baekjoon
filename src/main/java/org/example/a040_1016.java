@@ -7,21 +7,21 @@ public class a040_1016 {
     Scanner sc = new Scanner(System.in);
     int min = sc.nextInt();
     int max = sc.nextInt();
-    int[] arr = new int[1000001];
-    for(int i=1;i<1000001;i++){
-      arr[i]=i;
-    }
-    for(int i=2;i<1000001;i++){
-      if(arr[i]==0){
-        continue;
+    boolean[] check = new boolean[max-min+1];
+
+    for(long i=2;i*i<=max;i++){
+      long pow = i*i;
+      long start_index=min/pow;
+      if(min%pow!=0){
+        start_index++;
       }
-      for(int j=i*i;j<1000001;j=j*i){
-        arr[i]=0;
+      for(long j=start_index;pow*j<=max;j++){
+        check[(int)((j*pow)-min)]=true;
       }
     }
     int count=0;
-    for(int i=min;i<max;i++){
-      if(arr[i]!=0){
+    for(int i=0;i<=max-min;i++){
+      if(!check[i]){
         count++;
       }
     }
