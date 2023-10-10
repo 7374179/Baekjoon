@@ -9,20 +9,6 @@ public class a046_18352 {
   static int N, M, K, X;
   static List<Integer> answer;
   public static void main(String[] args){
-//    List<List<Integer>> list = new ArrayList<List<Integer>>();
-//    Scanner sc = new Scanner(System.in);
-//    int N = sc.nextInt();
-//    int M = sc.nextInt();
-//    int K = sc.nextInt();
-//    int X = sc.nextInt();
-//
-//    for(int i=0;i<N;i++){
-//      list.add(new ArrayList<>());
-//    }
-//
-//    for(int i=0;i<N;i++){
-//
-//    }
     Scanner scan = new Scanner(System.in);
     N = scan.nextInt();   // 노드의 수
     M = scan.nextInt();   // 에지의 수
